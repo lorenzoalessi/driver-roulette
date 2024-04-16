@@ -4,13 +4,11 @@ import it.lorenzoalessi.driverroulette.properties.ApplicationProperties;
 import it.lorenzoalessi.driverroulette.service.IDriverRouletteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("http://localhost:4200")
 @RestController
 @RequestMapping("/api/v1/driverroulette")
 public class DriverRouletteController {
@@ -25,8 +23,8 @@ public class DriverRouletteController {
     }
 
     @GetMapping("/names")
-    public List<String> getNames() {
-        return applicationProperties.getNames();
+    public ResponseEntity<List<String>> getNames() {
+        return ResponseEntity.ok(applicationProperties.getNames());
     }
 
     @GetMapping("/roulette")

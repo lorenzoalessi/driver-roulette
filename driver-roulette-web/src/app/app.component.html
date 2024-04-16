@@ -29,34 +29,34 @@
 
   <div class="selection-box">
     <div class="row">
-      <div class="col-md-4">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="driver1">
-          <label class="form-check-label" for="driver1">
-            Driver 1
-          </label>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="driver2">
-          <label class="form-check-label" for="driver2">
-            Driver 2
-          </label>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="driver3">
-          <label class="form-check-label" for="driver3">
-            Driver 3
-          </label>
+      <div *ngFor="let name of names"
+           class="col-xl-3 col-lg-6 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex align-items-center">
+              <img
+                src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                alt=""
+                style="width: 45px; height: 45px"
+                class="rounded-circle"
+              />
+              <div class="ms-3">
+                <p class="fw-bold mb-1">{{ name }}</p>
+                <button type="button" class="btn btn-outline-danger">
+                  <svg style="align-items: center; justify-content: center"
+                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon-fill" viewBox="0 0 16 16">
+                    <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <button class="btn btn-primary mt-3">Seleziona</button>
+  <button class="btn btn-primary mt-3">Clicca</button>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
