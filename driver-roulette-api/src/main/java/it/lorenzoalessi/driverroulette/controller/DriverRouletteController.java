@@ -3,6 +3,7 @@ package it.lorenzoalessi.driverroulette.controller;
 import it.lorenzoalessi.driverroulette.properties.ApplicationProperties;
 import it.lorenzoalessi.driverroulette.service.IDriverRouletteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +11,7 @@ import java.util.List;
 
 @CrossOrigin("http://localhost:4200")
 @RestController
-@RequestMapping("/api/v1/driverroulette")
+@RequestMapping(value = "/api/v1/driverroulette", produces = MediaType.APPLICATION_JSON_VALUE)
 public class DriverRouletteController {
 
     private final ApplicationProperties applicationProperties;
@@ -27,7 +28,7 @@ public class DriverRouletteController {
         return ResponseEntity.ok(applicationProperties.getNames());
     }
 
-    @GetMapping("/roulette")
+    @PostMapping("/roulette")
     public ResponseEntity<String> getRandomDriver(@RequestBody List<String> inputNames) {
         if (inputNames == null || inputNames.isEmpty())
             return ResponseEntity.badRequest().body("Invalid input names");
