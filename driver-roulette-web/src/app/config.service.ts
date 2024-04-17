@@ -11,4 +11,11 @@ export class ConfigService {
   getNames() {
     return this.http.get<string[]>(this.apiUrl + "/names", {observe: 'body', responseType: 'json'});
   }
+
+  roulette(body: string[]) {
+    return this.http.post(this.apiUrl + "/roulette", body, {
+      observe: 'body',
+      responseType: 'text'
+    });
+  }
 }
