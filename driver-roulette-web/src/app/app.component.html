@@ -1,56 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Drivers Roulette</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <i class="bi bi-ev-front-fill"></i>
+    </a>
+    <span class="navbar-brand mx-auto">DRIVERS ROULETTE</span>
+  </div>
+</nav>
 
-    .container {
-      text-align: center;
-    }
-
-    .selection-box {
-      margin-top: 20px;
-    }
-  </style>
-</head>
-<body>
-
-<div class="container">
-  <h1>Drivers Roulette</h1>
-
-  <div class="selection-box">
-    <div class="row">
-      <div *ngFor="let name of names; let i = index"
-           class="col-xl-3 col-lg-6 mb-4">
-        <div class="card">
-          <div class="card-body" [ngClass]="{'bg-danger': cardColors[i]}">
-            <div class="d-flex align-items-center">
-              <img
-                src="assets/images/{{name}}.jpeg"
-                alt=""
-                style="width: 45px; height: 45px"
-                class="rounded-circle"
-              />
-              <div class="ml-3">
-                <p class="fw-bold mb-1">{{ name }}</p>
-              </div>
-              <div class="ml-auto">
-                <button type="button" class="btn btn-danger"
-                        [ngClass]="{'btn-danger': !cardColors[i], 'btn-success': cardColors[i]}"
-                        (click)="toggleCardColor(i)">
-                  <i *ngIf="!cardColors[i]" class="fa fa-trash"></i>
-                  <i *ngIf="cardColors[i]" class="fa fa-check"></i>
-                </button>
-              </div>
+<div class="container mt-2" *ngIf="names.length > 1">
+  <div class="row row-cols-3">
+    <div class="col" *ngFor="let name of names; let i = index">
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="assets/img/{{name}}.jpeg" class="img-fluid rounded-start" alt="..." style="height: 100%">
+          </div>
+          <div class="col-md-8" [ngClass]="{'bg-danger': cardColors[i]}">
+            <div class="card-body">
+              <h5 class="card-title">{{ name }}</h5>
+              <p class="card-text">{{ getCardText(name) }}</p>
+              <button type="button" class="btn btn-danger"
+                      [ngClass]="{'btn-danger': !cardColors[i], 'btn-success': cardColors[i]}"
+                      (click)="toggleCardColor(i)">
+                <i *ngIf="!cardColors[i]" class="bi bi-trash"></i>
+                <i *ngIf="cardColors[i]" class="bi bi-check-circle"></i>
+              </button>
             </div>
           </div>
         </div>
@@ -58,22 +32,34 @@
     </div>
   </div>
 
-  <button class="btn btn-primary mt-3"
-          (click)="roulette()">
-    Clicca
-  </button>
+  <div class="row row-cols-3">
+    <div class="col"></div>
+    <button class="btn btn-primary"
+            (click)="roulette()">
+      CLICCA E SCOPRI CHI SARA' L'UBER
+    </button>
+  </div>
 
-  <div class="card mt-3">
-    <div class="card-body">
-      <div class="d-flex align-items-center">
-        L'uber di sta sera è... {{ result }}
+  <div class="row row-cols-3" *ngIf="result">
+    <div class="col"></div>
+    <div class="card mt-3 bg-dark">
+      <div class="card-body">
+        <div class="text-light text-center">
+          {{ result.toUpperCase() }}
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+<div class="container mt-2" *ngIf="names.length < 2">
+  <div class="row">
+    <div class="card mt-3">
+      <div class="card-body">
+        <div class="text-center">
+          DEVONO ESSERCI ALMENO 2 CLOWN PER SCEGLIERE L'UBER
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

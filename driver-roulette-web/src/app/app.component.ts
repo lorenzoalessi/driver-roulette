@@ -35,6 +35,29 @@ export class AppComponent implements OnInit {
     this.cardColors[index] = !this.cardColors[index];
   }
 
+  getCardText(name: string): string {
+    switch (name) {
+      case "Ane":
+        return "Mentre guido scoreggio";
+      case "Gio":
+        return "Amo le mandorle insabbiate";
+      case "Angi":
+        return "Il mio cane cammina";
+      case "Luca":
+        return "Amo la Chiara Untacci";
+      case "Fonta":
+        return "Spazzo i camini";
+      case "Filo":
+        return "Calcetto?";
+      case "Ida":
+        return "Alpino sei un coglione";
+      case "Alpo":
+        return "Non ho più un occhio";
+      default:
+        return "Non ti conosco uspappaaaaa";
+    }
+  }
+
   roulette() {
     this.requestNames = [];
     for (let i = 0; i < this.names.length; i++) {
@@ -43,8 +66,10 @@ export class AppComponent implements OnInit {
       }
     }
 
-    if (this.requestNames.length == 0)
-      alert("Includere almeno un guidatore!")
+    if (this.requestNames.length < 2) {
+      alert("Includi almeno due clown!")
+      return;
+    }
 
     this.configService.roulette(this.requestNames)
       .subscribe(data => this.result = data);
