@@ -9,5 +9,4 @@ public class DriverRouletteApplication {
     public static void main(String[] args) {
         SpringApplication.run(DriverRouletteApplication.class, args);
     }
-
 }
